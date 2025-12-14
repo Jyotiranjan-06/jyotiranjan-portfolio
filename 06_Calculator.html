@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stylish Calculator</title>
+
+<style>
+/* ===== RESET ===== */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Inter,system-ui,Arial;
+}
+
+/* ===== OPTION 1 BACKGROUND (DARK ABSTRACT GRADIENT) ===== */
+body{
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:
+    radial-gradient(circle at 20% 30%, #2b1055 0%, transparent 45%),
+    radial-gradient(circle at 80% 20%, #00ffd5 0%, transparent 40%),
+    radial-gradient(circle at 50% 80%, #12001f 0%, transparent 50%),
+    #05010d;
+}
+
+/* ===== CALCULATOR ===== */
+.calculator{
+  width:360px;
+  padding:26px;
+  border-radius:24px;
+  background:rgba(15,23,42,.88);
+  backdrop-filter:blur(16px);
+  box-shadow:0 35px 80px rgba(0,0,0,.7);
+  animation:float 5s ease-in-out infinite;
+}
+
+@keyframes float{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-10px)}
+}
+
+/* ===== DISPLAY ===== */
+#display{
+  width:100%;
+  height:74px;
+  border:none;
+  outline:none;
+  border-radius:18px;
+  background:#020617;
+  color:#22d3ee;
+  font-size:32px;
+  text-align:right;
+  padding:16px;
+  box-shadow:
+    inset 0 0 16px #000,
+    0 0 18px rgba(34,211,238,.3);
+}
+
+/* ===== BUTTON GRID ===== */
+.buttons{
+  margin-top:22px;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:14px;
+}
+
+/* ===== BASE BUTTON ===== */
+button{
+  height:60px;
+  border:none;
+  border-radius:16px;
+  font-size:18px;
+  color:#e5e7eb;
+  background:#1e293b;
+  cursor:pointer;
+  transition:.2s;
+}
+
+button:hover{
+  background:#334155;
+  transform:translateY(-2px);
+}
+
+button:active{
+  transform:scale(.94);
+}
+
+/* ===== BUTTON TYPES ===== */
+.number{
+  background:#1e293b;
+}
+.number:hover{
+  background:#334155;
+}
+
+.operator{
+  background:#6d28d9;
+}
+.operator:hover{
+  background:#7c3aed;
+}
+
+.function{
+  background:#0284c7;
+}
+.function:hover{
+  background:#0ea5e9;
+}
+
+.clear{
+  background:#dc2626;
+}
+.clear:hover{
+  background:#ef4444;
+}
+
+.equal{
+  grid-column:span 2;
+  background:linear-gradient(135deg,#22d3ee,#34d399);
+  color:#020617;
+  font-weight:600;
+}
+.equal:hover{
+  box-shadow:0 0 22px rgba(34,211,238,.6);
+}
+
+/* ===== ERROR SHAKE ===== */
+.error{
+  color:#fb7185!important;
+  animation:shake .3s;
+}
+
+@keyframes shake{
+  0%{transform:translateX(0)}
+  25%{transform:translateX(-4px)}
+  50%{transform:translateX(4px)}
+  75%{transform:translateX(-4px)}
+  100%{transform:translateX(0)}
+}
+</style>
+</head>
+
+<body>
+
+<div class="calculator">
+  <input id="display" disabled>
+
+  <div class="buttons">
+    <button class="clear" onclick="clr()">AC</button>
+    <button class="function" onclick="sqrt()">√</button>
+    <button class="function" onclick="percent()">%</button>
+    <button class="operator" onclick="del()">⌫</button>
+
+    <button class="number" onclick="add('7')">7</button>
+    <button class="number" onclick="add('8')">8</button>
+    <button class="number" onclick="add('9')">9</button>
+    <button class="operator" onclick="add('/')">÷</button>
+
+    <button class="number" onclick="add('4')">4</button>
+    <button class="number" onclick="add('5')">5</button>
+    <button class="number" onclick="add('6')">6</button>
+    <button class="operator" onclick="add('*')">×</button>
+
+    <button class="number" onclick="add('1')">1</button>
+    <button class="number" onclick="add('2')">2</button>
+    <button class="number" onclick="add('3')">3</button>
+    <button class="operator" onclick="add('-')">−</button>
+
+    <button class="function" onclick="toggle()">±</button>
+    <button class="number" onclick="add('0')">0</button>
+    <button class="number" onclick="add('.')">.</button>
+    <button class="operator" onclick="add('+')">+</button>
+
+    <button class="equal" onclick="calc()">=</button>
+  </div>
+</div>
+
+<script>
+const d=document.getElementById("display");
+
+function add(v){
+  d.classList.remove("error");
+  d.value+=v;
+}
+
+function clr(){
+  d.value="";
+}
+
+function del(){
+  d.value=d.value.slice(0,-1);
+}
+
+function calc(){
+  try{
+    d.value=eval(d.value);
+  }catch{
+    d.value="Error";
+    d.classList.add("error");
+  }
+}
+
+function sqrt(){
+  try{
+    d.value=Math.sqrt(eval(d.value));
+  }catch{
+    d.value="Error";
+    d.classList.add("error");
+  }
+}
+
+function percent(){
+  try{
+    d.value=eval(d.value)/100;
+  }catch{
+    d.value="Error";
+    d.classList.add("error");
+  }
+}
+
+function toggle(){
+  if(d.value){
+    d.value=eval(d.value)*-1;
+  }
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Jyotiranjan Satapathy — Portfolio</title>
+
+  <style>
+    :root{
+      --neon: #00eaff;
+      --neon2: #00c8ff;
+      --dark: #020617;
+      --card: rgba(255,255,255,0.06);
+      --border: rgba(0,200,255,0.35);
+      --muted: #9ca3af;
+      --text: #e2e8f0;
+      --radius: 14px;
+      font-family: Inter, system-ui, Arial;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+
+    body{
+      background: radial-gradient(circle at top, #00111f, #00060a 70%);
+      color:var(--text);
+      padding:26px;
+      display:flex;
+      justify-content:center;
+      min-height:100vh;
+    }
+
+    .container{
+      width:100%;
+      max-width:1100px;
+      display:grid;
+      grid-template-columns:1fr 350px;
+      gap:26px;
+    }
+
+    .main{
+      padding:26px;
+      background:var(--card);
+      border-radius:var(--radius);
+      backdrop-filter:blur(18px);
+      border:1px solid var(--border);
+      box-shadow:0 0 30px rgba(0,200,255,0.15);
+      animation: fadeIn .8s ease forwards;
+    }
+    @keyframes fadeIn { from{opacity:0;transform:translateY(20px);} }
+
+    .header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:12px;
+    }
+
+    .avatar{
+      width:78px;height:78px;border-radius:18px;
+      background:linear-gradient(135deg,#00d0ff,#007cf0);
+      display:flex;align-items:center;justify-content:center;
+      color:white;font-size:1.4rem;font-weight:800;
+      box-shadow:0 0 20px rgba(0,200,255,0.4);
+      transition:.3s;
+    }
+    .avatar:hover{ transform:scale(1.08); box-shadow:0 0 35px var(--neon); }
+
+    .name-block h1{
+      font-size:1.6rem;
+      font-weight:800;
+      color:var(--neon);
+    }
+    .name-block p{ color:var(--muted);margin-top:2px; }
+
+    .btn{
+      padding:10px 16px;
+      border-radius:12px;
+      font-weight:700;
+      text-decoration:none;
+      border:1px solid var(--border);
+      background:rgba(0,200,255,0.1);
+      color:var(--neon2);
+      transition:.3s;
+    }
+    .btn:hover{
+      background:rgba(0,200,255,0.25);
+      box-shadow:0 0 16px var(--neon);
+    }
+
+    .intro{
+      margin-top:18px;
+      padding:18px;
+      background:rgba(0,200,255,0.06);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      line-height:1.6;
+      box-shadow:0 0 20px rgba(0,200,255,0.12);
+      animation: introFade 1s ease forwards;
+      opacity:0;
+    }
+    @keyframes introFade { to{opacity:1;} }
+
+    .lead{
+      font-size:1.1rem;
+      font-weight:800;
+      color:var(--neon);
+      margin-bottom:6px;
+    }
+
+    .typing{
+      border-right:2px solid var(--neon2);
+      white-space:nowrap;
+      overflow:hidden;
+      width:0ch;
+      animation:typing 3s steps(60) forwards, blink .7s infinite;
+    }
+    @keyframes typing{ to{width:60ch;} }
+    @keyframes blink{50%{border-color:transparent;}}
+
+    .skills{
+      display:flex;flex-wrap:wrap;gap:10px;margin-top:16px;
+    }
+    .skill{
+      padding:8px 12px;
+      background:rgba(0,180,255,0.12);
+      border-radius:999px;
+      font-size:13px;
+      border:1px solid rgba(0,200,255,0.25);
+      color:var(--neon2);
+    }
+
+    .projects{
+      margin-top:22px;
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:14px;
+    }
+
+    .project-card{
+      padding:16px;
+      background:rgba(0,200,255,0.06);
+      border-radius:var(--radius);
+      border:1px solid var(--border);
+      box-shadow:0 0 20px rgba(0,200,255,0.12);
+      transition:.3s;
+      animation: pop .8s ease forwards;
+      opacity:0;
+    }
+    .project-card:nth-child(1){animation-delay:.2s}
+    .project-card:nth-child(2){animation-delay:.4s}
+    .project-card:nth-child(3){animation-delay:.6s}
+    .project-card:nth-child(4){animation-delay:.8s}
+
+    @keyframes pop{to{opacity:1;transform:none}}
+    .project-card:hover{
+      transform:translateY(-8px);
+      box-shadow:0 0 30px var(--neon2);
+    }
+
+    .project-card h3{ color:var(--neon2);margin-bottom:4px; }
+    .meta{ color:var(--muted);font-size:0.85rem;margin-bottom:10px; }
+
+    .view{
+      padding:8px 12px;
+      display:inline-block;
+      text-decoration:none;
+      color:black;
+      background:var(--neon);
+      font-weight:700;
+      border-radius:10px;
+      box-shadow:0 0 12px var(--neon2);
+    }
+    .view:hover{ box-shadow:0 0 20px var(--neon); }
+
+    .side{
+      display:flex;
+      flex-direction:column;
+      gap:20px;
+      animation: fadeIn 1s ease;
+    }
+
+    .contact-box{
+      display:flex;
+      gap:12px;
+      padding:14px;
+      background:rgba(0,200,255,0.08);
+      border-radius:16px;
+      border:1px solid var(--border);
+      box-shadow:0 0 20px rgba(0,200,255,0.2);
+      transition:.3s;
+    }
+    .contact-box:hover{
+      transform:translateY(-6px);
+      box-shadow:0 0 30px var(--neon);
+      border-color:var(--neon);
+    }
+
+    .icon{
+      font-size:1.8rem;
+      width:48px;height:48px;
+      display:flex;align-items:center;justify-content:center;
+      background:rgba(0,200,255,0.16);
+      border-radius:12px;
+      border:1px solid var(--border);
+    }
+
+    .label{ font-size:0.85rem;color:var(--muted); }
+    .value{
+      font-size:0.95rem;
+      color:var(--neon);
+      text-decoration:none;
+      font-weight:700;
+    }
+
+    .location{
+      padding:14px;
+      background:rgba(0,200,255,0.06);
+      border-radius:14px;
+      border:1px solid var(--border);
+      display:flex;gap:12px;
+    }
+
+    .resume-btn{
+      padding:12px;
+      background:var(--neon2);
+      color:black;
+      text-align:center;
+      font-weight:800;
+      border-radius:14px;
+      text-decoration:none;
+      box-shadow:0 0 20px var(--neon2);
+    }
+    .resume-btn:hover{
+      box-shadow:0 0 30px var(--neon);
+    }
+
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- LEFT MAIN -->
+  <main class="main">
+
+    <div class="header">
+      <div style="display:flex;gap:16px;align-items:center;">
+        <div class="avatar">JS</div>
+        <div class="name-block">
+          <h1>Jyotiranjan Satapathy</h1>
+          <p>BCA Student • Full-Stack Developer • AI Learner</p>
+        </div>
+      </div>
+
+      <div style="display:flex;gap:10px;">
+
+        <!-- FIXED LINKS HERE -->
+        <a class="btn" href="04_Education.html">Education</a>
+        <a class="btn" href="05_Projects.html">Projects</a>
+
+      </div>
+    </div>
+
+    <div class="intro">
+      <span class="lead">
+        <span class="typing">🌟 Hi, I’m Jyotiranjan — a passionate BCA student exploring Web-Dev & AI.</span>
+      </span>
+
+      <p style="margin-top:10px;">
+        I build impactful projects using <b>Python</b>, <b>JavaScript</b>,  
+        <b>machine learning</b> and modern web technologies.
+      </p>
+
+      <p style="margin-top:8px;">
+        I love transforming ideas into real working applications  
+        with clean UI, practical logic, and futuristic design.
+      </p>
+    </div>
+
+    <div class="skills">
+      <span class="skill">Python</span>
+      <span class="skill">JavaScript</span>
+      <span class="skill">HTML & CSS</span>
+      <span class="skill">Machine Learning</span>
+      <span class="skill">AI Tools</span>
+      <span class="skill">Git & GitHub</span>
+      <span class="skill">Frontend Development</span>
+    </div>
+
+    <h2 style="margin-top:22px;color:var(--neon2)">Projects</h2>
+
+    <div class="projects">
+
+      <div class="project-card">
+        <h3>Car Price Predictor</h3>
+        <p class="meta">Machine Learning • Python</p>
+        <a class="view" href="https://colab.research.google.com/drive/1B6IKOMM_kpKFjZvz-7wP37_DinMtADoo" target="_blank">View</a>
+      </div>
+
+      <div class="project-card">
+        <h3>Diabetic Predictor</h3>
+        <p class="meta">ML Classification • Python</p>
+        <a class="view" href="https://colab.research.google.com/drive/1a295GXAYGWxVn0bzoHWv4sEa5qe7Q-gY" target="_blank">View</a>
+      </div>
+
+      <div class="project-card">
+        <h3>Calculator</h3>
+        <p class="meta">HTML • CSS • JavaScript</p>
+
+        <!-- FIXED LINK -->
+        <a class="view" href="06_Calculator.html" target="_blank">Open</a>
+      </div>
+
+      <div class="project-card">
+        <h3>More Projects</h3>
+        <p class="meta">See full list</p>
+
+        <!-- FIXED LINK -->
+        <a class="view" href="05_Projects.html">Explore</a>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- SIDEBAR -->
+  <aside class="side">
+
+    <div class="contact-box">
+      <div class="icon">📞</div>
+      <div>
+        <p class="label">Phone</p>
+        <a class="value" href="tel:+917606993482">+91 76069 92482</a>
+      </div>
+    </div>
+
+    <div class="contact-box">
+      <div class="icon">📧</div>
+      <div>
+        <p class="label">Email</p>
+        <a class="value" href="mailto:jyotiranjansatapathy67@gmail.com">
+          jyotiranjansatapathy67@gmail.com
+        </a>
+      </div>
+    </div>
+
+    <div class="contact-box">
+      <div class="icon">🔗</div>
+      <div>
+        <p class="label">LinkedIn</p>
+        <a href="https://www.linkedin.com/in/jyotiranjan-satapathy-41a8a6349" target="_blank">
+               linkedin.com/in/jyotiranjan-satapathy
+        </a>
+
+      </div>
+    </div>
+
+    <div class="contact-box">
+      <div class="icon">🐙</div>
+      <div>
+        <p class="label">GitHub</p>
+        <a class="value" href="https://github.com/Jyotiranjan-06" target="_blank">
+          github.com/Jyotiranjan-06
+        </a>
+      </div>
+    </div>
+
+    <div class="location">
+      <div class="icon">📍</div>
+      <div>
+        <p class="label">Location</p>
+        <p class="value">Dhamnagar, Odisha, India</p>
+      </div>
+    </div>
+
+    <a class="resume-btn" href="#" download>⬇ Download Resume (PDF)</a>
+
+  </aside>
+
+</div>
+
+</body>
+</html>

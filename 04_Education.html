@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Education — Jyotiranjan Satapathy</title>
+
+  <style>
+    :root {
+      --bg-1: #0d1b2a;
+      --bg-2: #1b263b;
+      --card: #0f1c30;
+      --accent-a: #00c6ff;
+      --accent-b: #0088ff;
+      --muted: #94a3b8;
+      --text: #e2e8f0;
+      --radius: 14px;
+      --max-width: 1200px;
+      --gap: 22px;
+      font-family: Inter, Arial, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: radial-gradient(circle at top, #142c45, #0a192f, #000);
+      color: var(--text);
+      display: flex;
+      justify-content: center;
+      padding: 40px 18px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: var(--max-width);
+      display: grid;
+      gap: var(--gap);
+      grid-template-columns: 1fr 360px;
+    }
+
+    /* HEADER */
+    .header {
+      background: rgba(15, 28, 48, 0.9);
+      border-radius: var(--radius);
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      border: 1px solid rgba(0, 200, 255, 0.2);
+      box-shadow: 0 0 25px rgba(0, 200, 255, 0.08);
+      backdrop-filter: blur(6px);
+    }
+
+    .avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--accent-a), var(--accent-b));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      color: white;
+      box-shadow: 0 0 20px rgba(0, 200, 255, 0.4);
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: 1.4rem;
+      color: var(--accent-a);
+    }
+
+    .header p {
+      margin: 4px 0 0 0;
+      color: var(--muted);
+    }
+
+    /* EDUCATION GRID */
+    .grid {
+      display: grid;
+      gap: 16px;
+      grid-template-columns: 1fr;
+    }
+
+    .card {
+      background: rgba(15, 28, 48, 0.75);
+      padding: 18px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(0, 200, 255, 0.16);
+      box-shadow: 0 0 45px rgba(0, 200, 255, 0.05);
+      transform: translateY(15px);
+      opacity: 0;
+      animation: fadeUp 0.6s forwards;
+      transition: 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 0 60px rgba(0, 200, 255, 0.18);
+    }
+
+    .card h2 {
+      margin: 0;
+      font-size: 1.15rem;
+      color: var(--accent-a);
+      position: relative;
+    }
+
+    .card h2::after {
+      content: "";
+      width: 0%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent-a), var(--accent-b));
+      border-radius: 3px;
+      display: block;
+      margin-top: 8px;
+      transition: 0.4s ease;
+    }
+
+    .card:hover h2::after {
+      width: 42%;
+    }
+
+    .meta {
+      margin-top: 6px;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    .arrow {
+      margin-top: 10px;
+      font-weight: 600;
+      color: var(--accent-a);
+    }
+
+    @keyframes fadeUp {
+      to {
+        transform: none;
+        opacity: 1;
+      }
+    }
+
+    /* CONTACT PANEL (same as index neon panel) */
+
+    .contact {
+      background: rgba(15, 28, 48, 0.85);
+      border-radius: var(--radius);
+      padding: 20px;
+      border: 1px solid rgba(0, 200, 255, 0.16);
+      box-shadow: 0 0 40px rgba(0, 200, 255, 0.08);
+      backdrop-filter: blur(6px);
+      animation: fadeUp 0.6s forwards;
+    }
+
+    .c-head {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .c-head .icon {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, var(--accent-a), var(--accent-b));
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 12px;
+      font-weight: 800;
+      box-shadow: 0 0 25px rgba(0, 200, 255, 0.5);
+    }
+
+    .c-head h3 {
+      margin: 0;
+      color: var(--accent-a);
+    }
+
+    .c-list {
+      margin-top: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .c-item {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      padding: 12px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(0, 200, 255, 0.1);
+      transition: 0.2s ease;
+    }
+
+    .c-item:hover {
+      transform: translateY(-4px);
+      background: rgba(255,255,255,0.08);
+      box-shadow: 0 0 30px rgba(0,200,255,0.15);
+    }
+
+    .c-ico {
+      width: 42px;
+      height: 42px;
+      background: linear-gradient(135deg, var(--accent-a), var(--accent-b));
+      border-radius: 10px;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 20px;
+      box-shadow: 0 0 15px rgba(0,200,255,0.4);
+    }
+
+    .c-meta a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .c-meta small {
+      display: block;
+      color: var(--muted);
+      font-size: 0.8rem;
+      margin-top: 2px;
+    }
+
+    /* responsive */
+    @media (max-width: 900px) {
+      .container {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+
+    <!-- LEFT SIDE -->
+    <div>
+      <div class="header">
+        <div class="avatar">JS</div>
+        <div>
+          <h1>Education</h1>
+          <p>My academic journey & progress.</p>
+        </div>
+      </div>
+
+      <div class="grid">
+
+        <!-- Secondary -->
+        <div class="card">
+          <h2>Secondary Education 🏫</h2>
+          <div class="meta">Janata Nodal High School, Jahangir</div>
+          <div class="meta">District: Bhadrak, Odisha</div>
+          <div class="arrow">→ Completed Secondary School Certificate</div>
+        </div>
+
+        <!-- Higher Secondary -->
+        <div class="card">
+          <h2>Higher Secondary 🎓</h2>
+          <div class="meta">Royal Com & Sci HS School, Bhadrak</div>
+          <div class="meta">Stream: Science</div>
+          <div class="arrow">→ Completed Higher Secondary Certificate</div>
+        </div>
+
+        <!-- BCA -->
+        <div class="card">
+          <h2>Graduation (BCA) 🏛️</h2>
+          <div class="meta">N.C. Autonomous College, Jajpur</div>
+          <div class="meta">Status: Pursuing</div>
+          <div class="arrow">→ Learning Computer Applications & IT</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- RIGHT SIDE CONTACT -->
+    <div class="contact">
+      <div class="c-head">
+        <div class="icon">JS</div>
+        <h3>Contact</h3>
+      </div>
+
+      <div class="c-list">
+
+        <div class="c-item">
+          <div class="c-ico">📞</div>
+          <div class="c-meta">
+            <a href="tel:+917606992482">+91 76069 92482</a>
+            <small>Phone</small>
+          </div>
+        </div>
+
+        <div class="c-item">
+          <div class="c-ico">✉️</div>
+          <div class="c-meta">
+            <a href="mailto:jyotiranjansatapathy67@gmail.com">jyotiranjansatapathy67@gmail.com</a>
+            <small>Email</small>
+          </div>
+        </div>
+
+        <div class="c-item">
+          <div class="c-ico">in</div>
+          <div class="c-meta">
+            <a href="https://www.linkedin.com/in/jyotiranjan-satapathy-41a8a6349" target="_blank">LinkedIn Profile</a>
+            <small>Professional</small>
+          </div>
+        </div>
+
+        <div class="c-item">
+          <div class="c-ico">🐱</div>
+          <div class="c-meta">
+            <a href="https://github.com/Jyotiranjan-06" target="_blank">GitHub Profile</a>
+            <small>Code & Projects</small>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>
